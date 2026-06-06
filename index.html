@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colombia Sin Venda — Día 6: Las Tomas que Arrasaron Pueblos</title>
+<meta name="description" content="1.775 tomas guerrilleras en 569 municipios. Cilindros bomba, iglesias destruidas, familias enterradas. Colombia lo vivió.">
+<meta property="og:title" content="Colombia Sin Venda — Día 6: Las Tomas que Arrasaron Pueblos">
+<meta property="og:description" content="1.775 ataques. 569 municipios. Las FARC y el ELN convirtieron los pueblos colombianos en campos de guerra.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1A0505">
+<link rel="manifest" href="#" id="manifest-placeholder">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --rojo: #C0392B;
+  --rojo-vivo: #E74C3C;
+  --naranja: #E67E22;
+  --negro: #0A0101;
+  --carbon: #140808;
+  --ceniza: #2A1515;
+  --humo: #3D2020;
+  --crema: #F2E8D9;
+  --muted: #8A6A5A;
+  --gold: #C9A84C;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--negro);
+  color: var(--crema);
+  font-family: 'Crimson Pro', Georgia, serif;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+/* ===== SPLASH ===== */
+#splash {
+  position: fixed; inset: 0; z-index: 999;
+  background: var(--negro);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 20px;
+  animation: splashOut 0.6s ease 3s forwards;
+}
+@keyframes splashOut { to { opacity: 0; pointer-events: none; } }
+
+.splash-fire {
+  font-size: 4rem;
+  animation: fireShake 0.3s ease-in-out infinite alternate;
+}
+@keyframes fireShake {
+  from { transform: scale(1) rotate(-3deg); }
+  to { transform: scale(1.1) rotate(3deg); }
+}
+
+.splash-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  letter-spacing: 0.08em;
+  color: var(--crema);
+  text-align: center;
+  line-height: 1;
+}
+.splash-title span { color: var(--rojo-vivo); }
+
+.splash-sub {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.splash-bar {
+  width: 200px; height: 2px;
+  background: var(--humo);
+  overflow: hidden;
+}
+.splash-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rojo), var(--naranja));
+  animation: barFill 2.8s ease forwards;
+}
+@keyframes barFill { from { width: 0; } to { width: 100%; } }
+
+/* ===== NAVBAR ===== */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(10,1,1,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(192,57,43,0.3);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 20px;
+}
+
+.nav-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  color: var(--rojo-vivo);
+}
+
+.nav-dia {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.progress-dots {
+  display: flex; gap: 4px;
+}
+.dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--humo);
+  transition: background 0.3s;
+}
+.dot.done { background: var(--rojo); }
+.dot.active { background: var(--naranja); animation: dotPulse 1s ease-in-out infinite; }
+@keyframes dotPulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.4);} }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative;
+  padding: 80px 20px 60px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 30%, rgba(192,57,43,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 70% 70%, rgba(230,126,34,0.08) 0%, transparent 50%),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(192,57,43,0.03) 40px,
+      rgba(192,57,43,0.03) 41px
+    );
+}
+
+/* Burning lines effect */
+.ember {
+  position: absolute;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--naranja), transparent);
+  animation: emberFall linear infinite;
+  opacity: 0;
+}
+
+@keyframes emberFall {
+  0% { transform: translateY(-20px) translateX(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(100vh) translateX(30px); opacity: 0; }
+}
+
+.hero-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--rojo-vivo);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  position: relative; z-index: 1;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 12vw, 8rem);
+  letter-spacing: 0.04em;
+  text-align: center;
+  line-height: 0.9;
+  color: var(--crema);
+  position: relative; z-index: 1;
+  text-shadow: 0 0 40px rgba(192,57,43,0.4);
+}
+
+.hero-title .accent { color: var(--rojo-vivo); display: block; }
+
+.hero-stat-bar {
+  display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;
+  margin-top: 40px;
+  position: relative; z-index: 1;
+}
+
+.hero-stat {
+  text-align: center;
+  border-left: 2px solid var(--rojo);
+  padding-left: 16px;
+  opacity: 0;
+  animation: statIn 0.6s ease forwards;
+}
+.hero-stat:nth-child(1) { animation-delay: 3.2s; }
+.hero-stat:nth-child(2) { animation-delay: 3.5s; }
+.hero-stat:nth-child(3) { animation-delay: 3.8s; }
+
+@keyframes statIn { to { opacity: 1; transform: translateY(0); } from { opacity: 0; transform: translateY(20px); } }
+
+.hero-stat .num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--rojo-vivo);
+  display: block;
+  line-height: 1;
+}
+.hero-stat .label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-style: italic;
+  display: block;
+  margin-top: 4px;
+  max-width: 120px;
+}
+
+.scroll-hint {
+  position: absolute; bottom: 30px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: bounce 2s ease-in-out infinite;
+  z-index: 1;
+}
+@keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(6px);} }
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 80px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  color: var(--rojo);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--rojo), transparent);
+}
+
+h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 7vw, 4rem);
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin-bottom: 30px;
+  color: var(--crema);
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(242,232,217,0.85);
+  margin-bottom: 20px;
+}
+
+/* ===== TIMELINE ===== */
+.timeline {
+  position: relative;
+  padding-left: 24px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--rojo), var(--naranja), transparent);
+}
+
+.tl-item {
+  position: relative;
+  padding: 0 0 36px 24px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.tl-item.visible { opacity: 1; transform: translateX(0); }
+
+.tl-item::before {
+  content: '';
+  position: absolute; left: -5px; top: 6px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--rojo-vivo);
+  box-shadow: 0 0 12px rgba(231,76,60,0.6);
+}
+
+.tl-year {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--naranja);
+  letter-spacing: 0.08em;
+}
+
+.tl-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--crema);
+  margin: 4px 0;
+}
+
+.tl-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.tl-victims {
+  display: inline-block;
+  background: rgba(192,57,43,0.15);
+  border: 1px solid rgba(192,57,43,0.3);
+  color: var(--rojo-vivo);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  margin-top: 8px;
+  letter-spacing: 0.08em;
+}
+
+/* ===== MAPA RESPONSABILIDAD ===== */
+.resp-chart {
+  background: var(--carbon);
+  border: 1px solid rgba(192,57,43,0.2);
+  padding: 28px;
+  margin: 30px 0;
+}
+
+.resp-row {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 18px;
+}
+
+.resp-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  width: 100px;
+  flex-shrink: 0;
+  color: var(--crema);
+}
+
+.resp-bar-wrap {
+  flex: 1;
+  height: 24px;
+  background: var(--humo);
+  position: relative;
+  overflow: hidden;
+}
+
+.resp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rojo), var(--naranja));
+  width: 0;
+  transition: width 1.5s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+}
+
+.resp-bar-fill::after {
+  content: attr(data-pct);
+  position: absolute; right: 8px; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--crema);
+  white-space: nowrap;
+}
+
+/* ===== CASOS EMBLEMÁTICOS ===== */
+.casos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 30px 0;
+}
+
+.caso-card {
+  background: var(--carbon);
+  border: 1px solid var(--humo);
+  border-left: 3px solid var(--rojo);
+  padding: 20px 22px;
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.caso-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(192,57,43,0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.caso-card:hover::before, .caso-card.open::before { opacity: 1; }
+.caso-card:hover, .caso-card.open { border-color: var(--naranja); background: rgba(20,8,8,0.8); }
+
+.caso-header {
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+}
+
+.caso-lugar {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.06em;
+  color: var(--crema);
+  line-height: 1;
+}
+
+.caso-fecha {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--rojo-vivo);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+.caso-tag {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.caso-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+.caso-card.open .caso-detail { max-height: 200px; }
+
+.caso-detail p {
+  font-size: 0.92rem;
+  color: rgba(242,232,217,0.75);
+  margin-top: 14px;
+  line-height: 1.7;
+}
+
+.caso-expand {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--rojo);
+  letter-spacing: 0.15em;
+  margin-top: 8px;
+  text-transform: uppercase;
+}
+
+/* ===== CILINDRO BOMBA ===== */
+.bomba-viz {
+  background: linear-gradient(135deg, var(--carbon), var(--ceniza));
+  border: 1px solid rgba(230,126,34,0.3);
+  padding: 32px;
+  margin: 30px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.bomba-viz::before {
+  content: '⚠';
+  position: absolute; top: 10px; right: 14px;
+  font-size: 1.2rem; opacity: 0.3;
+}
+
+.cilindro {
+  font-size: 5rem;
+  display: block;
+  animation: cilindroShake 0.5s ease-in-out infinite alternate;
+  margin-bottom: 16px;
+}
+@keyframes cilindroShake {
+  from { transform: rotate(-2deg) scale(1); }
+  to { transform: rotate(2deg) scale(1.05); }
+}
+
+.bomba-fact {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  color: var(--naranja);
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+}
+
+.bomba-sub {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 10px;
+}
+
+/* ===== DEPTS CHART ===== */
+.depts-list {
+  display: flex; flex-direction: column; gap: 12px;
+  margin: 24px 0;
+}
+
+.dept-row {
+  display: flex; align-items: center; gap: 12px;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.dept-row.visible { opacity: 1; transform: translateY(0); }
+
+.dept-name {
+  width: 130px; flex-shrink: 0;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--crema);
+}
+
+.dept-bar-wrap {
+  flex: 1; height: 20px;
+  background: var(--humo);
+  position: relative;
+}
+
+.dept-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rojo), var(--rojo-vivo));
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+}
+
+.dept-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--naranja);
+  width: 40px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ===== QUOTE ===== */
+.quote-block {
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  margin: 40px 0;
+  background: rgba(201,168,76,0.05);
+  position: relative;
+}
+
+.quote-block::before {
+  content: '"';
+  position: absolute; top: -10px; left: 16px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  color: rgba(201,168,76,0.2);
+  line-height: 1;
+}
+
+.quote-text {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--crema);
+}
+
+.quote-source {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-top: 14px;
+  text-transform: uppercase;
+}
+
+/* ===== CTA ===== */
+.cta-section {
+  background: var(--carbon);
+  border-top: 2px solid var(--rojo);
+  border-bottom: 2px solid var(--rojo);
+  padding: 50px 20px;
+  text-align: center;
+  margin: 0;
+  max-width: 100%;
+}
+
+.cta-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 18vw, 10rem);
+  color: var(--rojo);
+  line-height: 0.9;
+  opacity: 0.15;
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.cta-content { position: relative; z-index: 1; }
+
+.cta-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  letter-spacing: 0.06em;
+  color: var(--crema);
+  margin-bottom: 16px;
+}
+
+.cta-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto 28px;
+  line-height: 1.7;
+}
+
+.btn-wa {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #25D366;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  padding: 14px 28px;
+  text-transform: uppercase;
+  transition: background 0.3s, transform 0.2s;
+}
+.btn-wa:hover { background: #1EBE56; transform: scale(1.04); }
+
+/* ===== PROGRESO RETO ===== */
+.reto-bar {
+  display: flex; gap: 4px; flex-wrap: wrap;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+.reto-dia {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+
+.reto-dia.hecho {
+  background: rgba(192,57,43,0.2);
+  border: 1px solid var(--rojo);
+  color: var(--rojo-vivo);
+}
+.reto-dia.hoy {
+  background: var(--rojo);
+  color: #fff;
+  animation: dotPulse 1.2s ease-in-out infinite;
+}
+.reto-dia.pendiente {
+  background: var(--humo);
+  border: 1px solid transparent;
+  color: var(--muted);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--negro);
+  border-top: 1px solid var(--humo);
+  padding: 30px 20px;
+  text-align: center;
+}
+
+footer p {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: rgba(138,106,90,0.5);
+  text-transform: uppercase;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 480px) {
+  .hero-stat-bar { gap: 16px; }
+  .hero-stat .label { max-width: 90px; font-size: 0.72rem; }
+  .resp-label { width: 80px; font-size: 0.65rem; }
+  .dept-name { width: 100px; font-size: 0.65rem; }
+}
+
+/* ===== CHAT FLOTANTE DE VOZ ===== */
+#chat-fab {
+  position: fixed;
+  bottom: 28px; right: 24px;
+  z-index: 500;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+}
+
+#chat-toggle {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--rojo), var(--naranja));
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 20px rgba(192,57,43,0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+#chat-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(192,57,43,0.7); }
+#chat-toggle .badge {
+  position: absolute; top: -4px; right: -4px;
+  background: var(--naranja);
+  color: #fff;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.5rem;
+  padding: 2px 5px;
+  border-radius: 8px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+#chat-panel {
+  width: min(360px, calc(100vw - 40px));
+  background: rgba(10,1,1,0.97);
+  border: 1px solid rgba(192,57,43,0.35);
+  border-radius: 2px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.7);
+  display: none;
+  flex-direction: column;
+  max-height: 520px;
+  overflow: hidden;
+  animation: panelIn 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+#chat-panel.open { display: flex; }
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.cp-header {
+  background: linear-gradient(135deg, rgba(192,57,43,0.25), rgba(230,126,34,0.15));
+  border-bottom: 1px solid rgba(192,57,43,0.3);
+  padding: 14px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.cp-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  color: var(--crema);
+  display: flex; align-items: center; gap: 8px;
+}
+.cp-title span { color: var(--rojo-vivo); }
+
+.cp-close {
+  background: none; border: none; cursor: pointer;
+  color: var(--muted); font-size: 1.1rem;
+  transition: color 0.2s;
+}
+.cp-close:hover { color: var(--crema); }
+
+.cp-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 14px;
+  scroll-behavior: smooth;
+  min-height: 200px;
+}
+.cp-messages::-webkit-scrollbar { width: 3px; }
+.cp-messages::-webkit-scrollbar-thumb { background: rgba(192,57,43,0.4); }
+
+.cp-msg {
+  display: flex; gap: 8px;
+  animation: msgIn 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cp-msg.user { flex-direction: row-reverse; }
+
+.cp-avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem; font-weight: 700;
+  flex-shrink: 0;
+}
+.cp-msg.assistant .cp-avatar {
+  background: rgba(192,57,43,0.25);
+  border: 1px solid rgba(192,57,43,0.5);
+  color: var(--rojo-vivo);
+}
+.cp-msg.user .cp-avatar {
+  background: rgba(230,126,34,0.15);
+  border: 1px solid rgba(230,126,34,0.3);
+  color: var(--naranja);
+}
+
+.cp-bubble {
+  max-width: 84%;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  border-radius: 2px;
+}
+.cp-msg.assistant .cp-bubble {
+  background: rgba(20,8,8,0.9);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--crema);
+}
+.cp-msg.user .cp-bubble {
+  background: rgba(192,57,43,0.12);
+  border: 1px solid rgba(192,57,43,0.25);
+  color: var(--crema);
+  text-align: right;
+}
+
+.cp-speak-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.1em;
+  color: var(--muted); text-transform: uppercase;
+  padding: 4px 0 0; display: flex; align-items: center; gap: 4px;
+  transition: color 0.2s; margin-top: 6px;
+}
+.cp-speak-btn:hover, .cp-speak-btn.speaking { color: var(--rojo-vivo); }
+
+.cp-typing {
+  display: flex; gap: 4px; align-items: center; padding: 4px 0;
+}
+.cp-typing .d {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--rojo); opacity: 0.4;
+  animation: blink 1.4s ease-in-out infinite;
+}
+.cp-typing .d:nth-child(2) { animation-delay: 0.2s; }
+.cp-typing .d:nth-child(3) { animation-delay: 0.4s; }
+@keyframes blink { 0%,80%,100%{opacity:0.3;transform:scale(0.8);} 40%{opacity:1;transform:scale(1);} }
+
+.cp-suggestions {
+  padding: 0 16px 10px;
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.cp-chip {
+  background: rgba(192,57,43,0.08);
+  border: 1px solid rgba(192,57,43,0.2);
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.06em;
+  padding: 5px 10px; cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.cp-chip:hover { background: rgba(192,57,43,0.15); color: var(--rojo-vivo); border-color: rgba(192,57,43,0.5); }
+
+.cp-input-row {
+  border-top: 1px solid rgba(192,57,43,0.2);
+  padding: 12px 14px;
+  display: flex; gap: 8px; align-items: flex-end;
+}
+
+#cp-input {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(192,57,43,0.2);
+  color: var(--crema);
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  padding: 10px 14px;
+  resize: none; outline: none;
+  max-height: 90px; overflow-y: auto;
+  line-height: 1.4;
+  transition: border-color 0.3s;
+}
+#cp-input:focus { border-color: rgba(192,57,43,0.5); }
+#cp-input::placeholder { color: var(--muted); font-style: italic; }
+
+.cp-btn {
+  width: 40px; height: 40px; flex-shrink: 0;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; transition: all 0.25s;
+}
+#cp-mic {
+  background: rgba(192,57,43,0.1);
+  border: 1px solid rgba(192,57,43,0.3);
+  color: var(--rojo-vivo);
+}
+#cp-mic:hover { background: rgba(192,57,43,0.2); }
+#cp-mic.recording {
+  background: rgba(192,57,43,0.3);
+  border-color: var(--rojo-vivo);
+  animation: dotPulse 0.8s ease-in-out infinite;
+}
+#cp-send {
+  background: var(--rojo);
+  color: #fff;
+}
+#cp-send:hover { background: var(--rojo-vivo); }
+#cp-send:disabled { background: var(--humo); color: var(--muted); cursor: not-allowed; }
+
+.cp-status {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem; letter-spacing: 0.15em;
+  color: var(--muted); text-align: center;
+  padding: 0 14px 10px; text-transform: uppercase;
+  transition: color 0.3s; height: 18px;
+}
+.cp-status.active { color: var(--rojo-vivo); }
+.cp-status.speaking { color: var(--naranja); }
+</style>
+</head>
+<body>
+
+<!-- Splash -->
+<div id="splash">
+  <div class="splash-fire">🔥</div>
+  <div class="splash-title">LAS <span>TOMAS</span><br>QUE ARRASARON<br>PUEBLOS</div>
+  <div class="splash-sub">Colombia Sin Venda · Día 6 de 20</div>
+  <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-brand">🇨🇴 SIN VENDA</div>
+  <div class="progress-dots" id="progress-dots"></div>
+  <div class="nav-dia">DÍA 6/20</div>
+</nav>
+
+<!-- Hero -->
+<div class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-eyebrow">Colombia Sin Venda — Día 6 de 20</div>
+  <h1 class="hero-title">
+    LAS TOMAS<br>
+    <span class="accent">QUE ARRASARON</span>
+    PUEBLOS
+  </h1>
+  <div class="hero-stat-bar">
+    <div class="hero-stat">
+      <span class="num" data-target="1775" id="cnt1">0</span>
+      <span class="label">Tomas y ataques guerrilleros</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num" data-target="569" id="cnt2">0</span>
+      <span class="label">Municipios atacados en Colombia</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num" data-target="48" id="cnt3">0</span>
+      <span class="label">Años de terror 1965–2013</span>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Desliza para conocer la verdad</span>
+    <span>▼</span>
+  </div>
+</div>
+
+<!-- Qué fue una toma -->
+<section class="reveal">
+  <div class="section-label">¿Qué era una toma?</div>
+  <h2>UNA GUERRA<br>CONTRA EL PUEBLO</h2>
+  <p>Una toma guerrillera no era un combate entre soldados. Era un ataque masivo y planificado a un pueblo entero: la guerrilla llegaba de noche con decenas de combatientes, rodeaba la estación de policía, y convertía cada casa, cada iglesia, cada calle en un campo de batalla. Los civiles dormían cuando empezaban los disparos.</p>
+  <p>Las FARC-EP fueron responsables de <strong>1.106 de estas tomas</strong> — el 63% del total. El ELN y otras guerrillas completaron el resto. Desde 1965 hasta 2013, <strong>cada mes del año, en algún rincón de Colombia, un pueblo despertaba en medio del fuego.</strong></p>
+
+  <div class="quote-block">
+    <p class="quote-text">Las guerrillas libaron una guerra centrada en la lógica de acumulación territorial. Cada frente guerrillero controló a la población circundante a través de emboscadas, sabotajes, extorsión, secuestro y masacres.</p>
+    <p class="quote-source">— Centro Nacional de Memoria Histórica, Informe 2016</p>
+  </div>
+</section>
+
+<!-- Cilindro bomba -->
+<section class="reveal" style="padding-top: 0;">
+  <div class="section-label">El arma más cobarde</div>
+  <h2>EL CILINDRO<br>BOMBA</h2>
+  <p>Desde 1996, la guerrilla adoptó una nueva arma: cilindros de gas rellenos de metralla, clavos, vidrio y explosivo. Los lanzaban desde las colinas hacia los pueblos. No apuntaban a soldados — apuntaban a donde vivía la gente.</p>
+
+  <div class="bomba-viz">
+    <span class="cilindro">🛢️</span>
+    <div class="bomba-fact">Un cilindro de gas doméstico<br>convertido en arma de terror masivo</div>
+    <div class="bomba-sub">Costo para la guerrilla: menos de $50.000 pesos<br>Costo para las víctimas: la vida entera</div>
+  </div>
+
+  <p>Bojayá (2002) es el símbolo más doloroso: un cilindro bomba lanzado por las FARC cayó sobre la iglesia del pueblo donde 300 personas se habían refugiado. <strong>119 murieron, 79 de ellos niños.</strong> No fue un error — fue una estrategia.</p>
+</section>
+
+<!-- Casos emblemáticos -->
+<section class="reveal" style="padding-top: 0;">
+  <div class="section-label">La historia que no pueden borrar</div>
+  <h2>PUEBLOS QUE<br>NUNCA OLVIDARÁN</h2>
+  <p>Estos son algunos de los casos más devastadores. Toca cada uno para conocer lo que pasó:</p>
+
+  <div class="casos-grid" id="casos-grid">
+    <div class="caso-card" onclick="toggleCaso(this)">
+      <div class="caso-header">
+        <div>
+          <div class="caso-lugar">BOJAYÁ, CHOCÓ</div>
+          <div class="caso-tag">Masacre de la Iglesia</div>
+        </div>
+        <div class="caso-fecha">2 MAY · 2002</div>
+      </div>
+      <div class="caso-expand">▶ Ver detalles</div>
+      <div class="caso-detail">
+        <p>Las FARC lanzaron un cilindro bomba sobre la iglesia del pueblo donde 300 civiles se habían refugiado del combate. 119 personas murieron, 79 de ellas niños. Es la masacre más dolorosa de las FARC contra civiles en el siglo XXI. Las comunidades afrocolombianas del Chocó cargaron ese dolor por décadas.</p>
+      </div>
+    </div>
+
+    <div class="caso-card" onclick="toggleCaso(this)">
+      <div class="caso-header">
+        <div>
+          <div class="caso-lugar">MITÚ, VAUPÉS</div>
+          <div class="caso-tag">Toma de la Capital Departamental</div>
+        </div>
+        <div class="caso-fecha">1 NOV · 1998</div>
+      </div>
+      <div class="caso-expand">▶ Ver detalles</div>
+      <div class="caso-detail">
+        <p>Más de 1.000 guerrilleros de las FARC atacaron Mitú, capital del Vaupés, durante 60 horas. Tomaron a 61 policías como rehenes. Fue la única capital departamental capturada por la guerrilla en la historia de Colombia. El símbolo de la pretensión de las FARC de tomarse el poder.</p>
+      </div>
+    </div>
+
+    <div class="caso-card" onclick="toggleCaso(this)">
+      <div class="caso-header">
+        <div>
+          <div class="caso-lugar">EL BILLAR, CAQUETÁ</div>
+          <div class="caso-tag">Masacre de militares y toma</div>
+        </div>
+        <div class="caso-fecha">3 MAR · 1998</div>
+      </div>
+      <div class="caso-expand">▶ Ver detalles</div>
+      <div class="caso-detail">
+        <p>Las FARC emboscaron a la Compañía Marte del Ejército Nacional. 62 soldados murieron y 43 fueron capturados. Fue el mayor golpe militar de las FARC y marcó el inicio de las negociaciones del Caguán. La guerrilla usó este triunfo para presionar políticamente al gobierno.</p>
+      </div>
+    </div>
+
+    <div class="caso-card" onclick="toggleCaso(this)">
+      <div class="caso-header">
+        <div>
+          <div class="caso-lugar">VIGÍA DEL FUERTE, ANTIOQUIA</div>
+          <div class="caso-tag">Toma con cilindros bomba</div>
+        </div>
+        <div class="caso-fecha">2 MAY · 2002</div>
+      </div>
+      <div class="caso-expand">▶ Ver detalles</div>
+      <div class="caso-detail">
+        <p>Simultáneamente con Bojayá, las FARC atacaron Vigía del Fuerte con cilindros bomba. El pueblo quedó destruido. Decenas de familias lo perdieron todo en horas. Fue parte de una ofensiva coordinada en el Atrato que demostró el poder territorial que tenían las FARC en el Chocó y Antioquia.</p>
+      </div>
+    </div>
+
+    <div class="caso-card" onclick="toggleCaso(this)">
+      <div class="caso-header">
+        <div>
+          <div class="caso-lugar">NARIÑO, ANTIOQUIA</div>
+          <div class="caso-tag">Toma al municipio del Bajo Cauca</div>
+        </div>
+        <div class="caso-fecha">2000–2003</div>
+      </div>
+      <div class="caso-expand">▶ Ver detalles</div>
+      <div class="caso-detail">
+        <p>El municipio de Nariño, en el suroeste antioqueño, fue atacado repetidamente por las FARC entre 2000 y 2003. Las tomas dejaron muertos, desplazados y la infraestructura pública destruida. Como en muchos municipios antioqueños, la guerrilla controlaba el territorio porque el Estado era invisible. Este patrón se repitió en toda la subregión del Bajo Cauca.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Responsabilidad por guerrilla -->
+<section class="reveal" style="padding-top: 0;">
+  <div class="section-label">Quiénes hicieron qué</div>
+  <h2>LA RESPONSABILIDAD<br>EN NÚMEROS</h2>
+  <p>De las 1.775 tomas y ataques registrados entre 1965 y 2013 según el CNMH:</p>
+
+  <div class="resp-chart" id="resp-chart">
+    <div class="resp-row">
+      <div class="resp-label">FARC-EP</div>
+      <div class="resp-bar-wrap">
+        <div class="resp-bar-fill" data-pct="63%" style="--target: 63%">63%</div>
+      </div>
+    </div>
+    <div class="resp-row">
+      <div class="resp-label">ELN</div>
+      <div class="resp-bar-wrap">
+        <div class="resp-bar-fill" data-pct="22%" style="--target: 22%">22%</div>
+      </div>
+    </div>
+    <div class="resp-row">
+      <div class="resp-label">EPL / Otros</div>
+      <div class="resp-bar-wrap">
+        <div class="resp-bar-fill" data-pct="15%" style="--target: 15%">15%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Departamentos -->
+<section class="reveal" style="padding-top: 0;">
+  <div class="section-label">Territorios más golpeados</div>
+  <h2>LOS DEPARTAMENTOS<br>MÁS ATACADOS</h2>
+  <p>Las FARC concentraron sus tomas en estos departamentos según el informe del CNMH:</p>
+
+  <div class="depts-list" id="depts-list">
+    <div class="dept-row">
+      <div class="dept-name">CAUCA</div>
+      <div class="dept-bar-wrap"><div class="dept-bar" data-w="88"></div></div>
+      <div class="dept-num">244</div>
+    </div>
+    <div class="dept-row">
+      <div class="dept-name">ANTIOQUIA</div>
+      <div class="dept-bar-wrap"><div class="dept-bar" data-w="41"></div></div>
+      <div class="dept-num">113</div>
+    </div>
+    <div class="dept-row">
+      <div class="dept-name">NARIÑO</div>
+      <div class="dept-bar-wrap"><div class="dept-bar" data-w="32"></div></div>
+      <div class="dept-num">87</div>
+    </div>
+    <div class="dept-row">
+      <div class="dept-name">CUNDINAMARCA</div>
+      <div class="dept-bar-wrap"><div class="dept-bar" data-w="27"></div></div>
+      <div class="dept-num">74</div>
+    </div>
+    <div class="dept-row">
+      <div class="dept-name">HUILA</div>
+      <div class="dept-bar-wrap"><div class="dept-bar" data-w="24"></div></div>
+      <div class="dept-num">67</div>
+    </div>
+    <div class="dept-row">
+      <div class="dept-name">TOLIMA</div>
+      <div class="dept-bar-wrap"><div class="dept-bar" data-w="24"></div></div>
+      <div class="dept-num">66</div>
+    </div>
+  </div>
+
+  <p style="margin-top: 20px; font-style: italic; color: var(--muted);">Antioquia, con 113 ataques, incluye toda la subregión del Bajo Cauca — la zona donde tú vives. Esta no es historia lejana.</p>
+</section>
+
+<!-- Timeline -->
+<section class="reveal" style="padding-top: 0;">
+  <div class="section-label">La escalada del terror</div>
+  <h2>DE 1965<br>A HOY</h2>
+
+  <div class="timeline" id="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1965</div>
+      <div class="tl-title">Las primeras tomas</div>
+      <div class="tl-desc">El ELN y las FARC comienzan las primeras incursiones armadas a poblaciones rurales en Santander y Huila. La estrategia: demostrar que el Estado no existe fuera de las ciudades.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1993</div>
+      <div class="tl-title">Las FARC declaran guerra total</div>
+      <div class="tl-desc">En su 8ª conferencia, las FARC adoptan el "Plan Estratégico para la Toma del Poder". Las tomas a municipios se multiplican. La violencia contra civiles escala sin precedente.</div>
+      <div class="tl-victims">⚠ Inicio de la era más sangrienta</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1996</div>
+      <div class="tl-title">Primer cilindro bomba</div>
+      <div class="tl-desc">Las FARC introducen los cilindros de gas como arma de guerra. Desde ahora, ningún civil refugiado en una iglesia o escuela estará a salvo durante una toma.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1998</div>
+      <div class="tl-title">Mitú — capital capturada</div>
+      <div class="tl-desc">1.000 guerrilleros toman la capital del Vaupés por 60 horas. 61 policías secuestrados. Es el punto más alto del poder territorial de las FARC en la historia.</div>
+      <div class="tl-victims">61 uniformados secuestrados</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2002</div>
+      <div class="tl-title">Bojayá — la masacre de la iglesia</div>
+      <div class="tl-desc">El hecho más doloroso de la guerra moderna en Colombia. Un cilindro bomba de las FARC cae sobre una iglesia con 300 civiles adentro. 119 muertos, 79 niños.</div>
+      <div class="tl-victims">119 civiles masacrados · 79 niños</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2016</div>
+      <div class="tl-title">Acuerdo de Paz — Fin oficial</div>
+      <div class="tl-desc">El gobierno Santos y las FARC firman el Acuerdo de Paz en La Habana. Las tomas masivas cesan. Pero las disidencias y el ELN continúan operando en el Bajo Cauca y el Pacífico.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">HOY</div>
+      <div class="tl-title">El conflicto continúa</div>
+      <div class="tl-desc">Las disidencias de las FARC (Estado Mayor Central) y el ELN siguen activos. El Bajo Cauca Antioqueño sigue siendo zona de disputa armada. La historia no terminó — cambió de forma.</div>
+      <div class="tl-victims">⚠ Vigente en tu región</div>
+    </div>
+  </div>
+</section>
+
+<!-- Reflexión -->
+<section class="reveal" style="padding-top: 0;">
+  <div class="section-label">Para los jóvenes del Bajo Cauca</div>
+  <h2>¿QUÉ TE<br>CUENTAN HOY?</h2>
+  <p>Algunos hablan de la guerrilla como si fuera una alternativa al orden actual, como si fuera una opción de cambio para los pobres. <strong>Pero esta es la historia que nunca te muestran.</strong></p>
+  <p>No fueron los guerrilleros quienes construyeron escuelas en el Chocó. Fueron ellos quienes las bombardearon. No fueron ellos quienes protegieron al campesino — fueron ellos quienes le pusieron minas en su parcela, le secuestraron al hijo, le quemaron la casa.</p>
+
+  <div class="quote-block">
+    <p class="quote-text">La legalidad no se impone solo con la fuerza — se construye ofreciendo un camino viable para ser legal. El Bajo Cauca merece propuestas de redención y orden con oportunidades.</p>
+    <p class="quote-source">— Harold Augusto Marín Machado · Caucasia, Antioquia</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section" style="position:relative;">
+  <span class="cta-num">6</span>
+  <div class="cta-content">
+    <div class="cta-title">COMPARTE ESTA VERDAD</div>
+    <p class="cta-sub">Cada joven que conoce la historia tiene una venda menos. Comparte esta app con tus amigos del Bajo Cauca.</p>
+    <a href="#" class="btn-wa" id="btn-wa">📲 Compartir en WhatsApp</a>
+
+    <div style="margin-top: 40px;">
+      <div class="section-label" style="justify-content:center; margin-bottom:14px;">Progreso del reto — 20 días</div>
+      <div class="reto-bar" id="reto-bar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CHAT FLOTANTE DE VOZ ===== -->
+<div id="chat-fab">
+  <div id="chat-panel">
+    <div class="cp-header">
+      <div class="cp-title">🔥 <span>PREGUNTA</span> AL HISTORIADOR</div>
+      <button class="cp-close" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="cp-messages" id="cp-messages"></div>
+    <div class="cp-suggestions" id="cp-chips">
+      <button class="cp-chip" onclick="cpAsk(this)">¿Qué fue Bojayá?</button>
+      <button class="cp-chip" onclick="cpAsk(this)">¿Qué es un cilindro bomba?</button>
+      <button class="cp-chip" onclick="cpAsk(this)">¿Cuántas tomas hicieron las FARC?</button>
+      <button class="cp-chip" onclick="cpAsk(this)">¿Por qué atacaban pueblos?</button>
+      <button class="cp-chip" onclick="cpAsk(this)">¿Sigue pasando hoy?</button>
+    </div>
+    <div class="cp-status" id="cp-status">Escribe o usa el micrófono</div>
+    <div class="cp-input-row">
+      <textarea id="cp-input" rows="1" placeholder="Pregunta sobre las tomas guerrilleras..."></textarea>
+      <button class="cp-btn" id="cp-mic" onclick="cpToggleMic()" title="Voz">🎙️</button>
+      <button class="cp-btn" id="cp-send" onclick="cpSend()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <button id="chat-toggle" onclick="toggleChat()">
+    🔥
+    <span class="badge">IA + VOZ</span>
+  </button>
+</div>
+
+<footer>
+  <p>Desarrollada por Vibras Positivas HM — Derechos de Autor Reservados</p>
+  <p style="margin-top:6px;">Fuentes: CNMH · Comisión de la Verdad · Wikipedia Conflicto Armado Colombia</p>
+</footer>
+
+<script>
+// Embers
+(function() {
+  const hero = document.getElementById('hero');
+  for (let i = 0; i < 15; i++) {
+    const e = document.createElement('div');
+    e.className = 'ember';
+    const h = 20 + Math.random() * 80;
+    e.style.cssText = `left:${Math.random()*100}%;height:${h}px;animation-duration:${4+Math.random()*6}s;animation-delay:${Math.random()*5}s;opacity:0;`;
+    hero.appendChild(e);
+  }
+})();
+
+// Progress dots
+const dots = document.getElementById('progress-dots');
+for (let i = 0; i < 20; i++) {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i < 5 ? ' done' : i === 5 ? ' active' : '');
+  dots.appendChild(d);
+}
+
+// Reto bar
+const reto = document.getElementById('reto-bar');
+for (let i = 1; i <= 20; i++) {
+  const d = document.createElement('div');
+  d.className = 'reto-dia ' + (i < 6 ? 'hecho' : i === 6 ? 'hoy' : 'pendiente');
+  d.textContent = i;
+  reto.appendChild(d);
+}
+
+// Counters
+function animateCounter(el, target, duration=2000) {
+  let start = null;
+  function step(ts) {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / duration, 1);
+    el.textContent = Math.floor(p * target).toLocaleString('es-CO');
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = target.toLocaleString('es-CO');
+  }
+  requestAnimationFrame(step);
+}
+
+setTimeout(() => {
+  animateCounter(document.getElementById('cnt1'), 1775, 2500);
+  animateCounter(document.getElementById('cnt2'), 569, 2000);
+  animateCounter(document.getElementById('cnt3'), 48, 1500);
+}, 3200);
+
+// WhatsApp
+document.getElementById('btn-wa').href =
+  `https://wa.me/?text=${encodeURIComponent('🔥 Colombia Sin Venda — Día 6: Las Tomas que Arrasaron Pueblos\n\n1.775 ataques guerrilleros. 569 municipios. Bojayá. Mitú. Cilindros bomba.\n\nConoce la historia que nadie te cuenta 👇\n\nDesarrollada por Vibras Positivas HM · Caucasia, Antioquia')}`;
+
+// Toggle casos
+function toggleCaso(el) {
+  el.classList.toggle('open');
+  const exp = el.querySelector('.caso-expand');
+  exp.textContent = el.classList.contains('open') ? '▼ Cerrar' : '▶ Ver detalles';
+}
+
+// Scroll reveal + bar animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+
+      // Animate resp bars
+      if (entry.target.id === 'resp-chart') {
+        const fills = entry.target.querySelectorAll('.resp-bar-fill');
+        fills.forEach(f => {
+          const pct = f.getAttribute('data-pct');
+          setTimeout(() => f.style.width = pct, 200);
+        });
+      }
+
+      // Animate dept bars
+      if (entry.target.id === 'depts-list') {
+        const rows = entry.target.querySelectorAll('.dept-row');
+        rows.forEach((r, i) => {
+          setTimeout(() => {
+            r.classList.add('visible');
+            const bar = r.querySelector('.dept-bar');
+            const w = bar.getAttribute('data-w');
+            bar.style.width = w + '%';
+          }, i * 120);
+        });
+      }
+
+      // Timeline items
+      if (entry.target.id === 'timeline') {
+        const items = entry.target.querySelectorAll('.tl-item');
+        items.forEach((item, i) => {
+          setTimeout(() => item.classList.add('visible'), i * 150);
+        });
+      }
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+observer.observe(document.getElementById('resp-chart'));
+observer.observe(document.getElementById('depts-list'));
+observer.observe(document.getElementById('timeline'));
+// ===== CHAT CON VOZ =====
+const CP_SYSTEM = `Eres un historiador y educador colombiano especializado en el conflicto armado interno de Colombia. Tu rol es explicar a jóvenes del Bajo Cauca Antioqueño la historia de las tomas guerrilleras, las masacres, el cilindro bomba y el impacto de la guerrilla (FARC, ELN) en los pueblos de Colombia.
+
+Datos clave que debes conocer:
+- Entre 1965 y 2013 hubo 1.775 tomas y ataques guerrilleros en 569 municipios (CNMH)
+- Las FARC fueron responsables del 63% (1.106 tomas), el ELN del 22%
+- Bojayá (2 de mayo de 2002): cilindro bomba de las FARC en la iglesia, 119 muertos, 79 niños
+- Mitú (1998): 1.000 guerrilleros tomaron la capital del Vaupés por 60 horas, 61 policías secuestrados
+- El cilindro bomba fue adoptado desde 1996: cilindros de gas rellenos de metralla lanzados sobre civiles
+- Cauca fue el departamento más golpeado (244 acciones), seguido de Antioquia (113)
+- Antioquia incluye el Bajo Cauca, la región donde viven los jóvenes que usan esta app
+- En 2002 ocurrieron las tomas más violentas, coincidiendo con la ruptura de los diálogos del Caguán
+- Las FARC proclamaron el "Plan Estratégico para la Toma del Poder" en 1993, escalando la violencia
+
+Tono: cercano, directo, apasionado por la verdad, sin odio innecesario pero sin suavizar los hechos. Habla en español colombiano. Respuestas claras de 3-5 oraciones para preguntas simples. Si te preguntan algo no relacionado, redirige al tema del conflicto y las tomas.`;
+
+let cpHistory = [];
+let cpRecognition = null;
+let cpRecording = false;
+
+function toggleChat() {
+  const panel = document.getElementById('chat-panel');
+  panel.classList.toggle('open');
+  if (panel.classList.contains('open') && cpHistory.length === 0) {
+    setTimeout(() => cpWelcome(), 300);
+  }
+}
+
+function cpWelcome() {
+  const welcome = 'Bienvenido. Soy tu guía sobre las tomas guerrilleras en Colombia. Entre 1965 y 2013, la guerrilla atacó 569 municipios, arrasando pueblos con cilindros bomba y dejando cientos de miles de víctimas. ¿Qué quieres saber?';
+  cpAddMsg('assistant', welcome);
+  cpHistory.push({ role: 'assistant', content: welcome });
+  cpSpeak(welcome);
+}
+
+function cpAsk(btn) {
+  document.getElementById('cp-input').value = btn.textContent;
+  cpSend();
+}
+
+async function cpSend(override = null) {
+  const input = document.getElementById('cp-input');
+  const text = (override || input.value).trim();
+  if (!text) return;
+  input.value = '';
+  input.style.height = 'auto';
+
+  cpAddMsg('user', text);
+  cpHistory.push({ role: 'user', content: text });
+
+  const sendBtn = document.getElementById('cp-send');
+  sendBtn.disabled = true;
+  cpShowTyping();
+  cpSetStatus('Procesando...', 'active');
+
+  try {
+    const res = await fetch('/.netlify/functions/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ system: CP_SYSTEM, messages: cpHistory })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || data.error || JSON.stringify(data);
+
+    cpRemoveTyping();
+    cpHistory.push({ role: 'assistant', content: reply });
+    cpAddMsg('assistant', reply);
+    cpSetStatus('Hablando...', 'speaking');
+    await cpSpeak(reply);
+    cpSetStatus('Escribe o usa el micrófono');
+  } catch (err) {
+    cpRemoveTyping();
+    cpAddMsg('assistant', 'Error de conexión. Intenta de nuevo.');
+    cpSetStatus('Error');
+  }
+  sendBtn.disabled = false;
+}
+
+function cpAddMsg(role, text) {
+  const container = document.getElementById('cp-messages');
+  const div = document.createElement('div');
+  div.className = 'cp-msg ' + role;
+
+  const avatar = document.createElement('div');
+  avatar.className = 'cp-avatar';
+  avatar.textContent = role === 'user' ? 'TÚ' : 'CSV';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'cp-bubble';
+  bubble.innerHTML = text.replace(/\n/g, '<br>');
+
+  if (role === 'assistant') {
+    const btn = document.createElement('button');
+    btn.className = 'cp-speak-btn';
+    btn.innerHTML = '🔊 Escuchar';
+    btn.onclick = () => cpSpeak(text, btn);
+    bubble.appendChild(btn);
+  }
+
+  div.appendChild(avatar);
+  div.appendChild(bubble);
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+  return div;
+}
+
+function cpShowTyping() {
+  const c = document.getElementById('cp-messages');
+  const d = document.createElement('div');
+  d.className = 'cp-msg assistant'; d.id = 'cp-typing';
+  const av = document.createElement('div'); av.className = 'cp-avatar'; av.textContent = 'CSV';
+  const bu = document.createElement('div'); bu.className = 'cp-bubble';
+  bu.innerHTML = '<div class="cp-typing"><div class="d"></div><div class="d"></div><div class="d"></div></div>';
+  d.appendChild(av); d.appendChild(bu);
+  c.appendChild(d);
+  c.scrollTop = c.scrollHeight;
+}
+
+function cpRemoveTyping() {
+  const el = document.getElementById('cp-typing');
+  if (el) el.remove();
+}
+
+function cpSetStatus(text, type = '') {
+  const el = document.getElementById('cp-status');
+  el.textContent = text;
+  el.className = 'cp-status ' + type;
+}
+
+function cpSpeak(text, btnEl) {
+  return new Promise(resolve => {
+    if (!('speechSynthesis' in window)) { resolve(); return; }
+    window.speechSynthesis.cancel();
+    const clean = text.replace(/<[^>]*>/g, '').trim();
+    const utt = new SpeechSynthesisUtterance(clean);
+    utt.lang = 'es-CO'; utt.rate = 0.92; utt.pitch = 1.0; utt.volume = 1.0;
+    const voices = window.speechSynthesis.getVoices();
+    const v = voices.find(v => v.lang.startsWith('es') && v.lang.includes('CO'))
+           || voices.find(v => v.lang.startsWith('es'));
+    if (v) utt.voice = v;
+    if (btnEl) {
+      btnEl.innerHTML = '⏹ Detener'; btnEl.classList.add('speaking');
+      btnEl.onclick = () => { window.speechSynthesis.cancel(); btnEl.innerHTML = '🔊 Escuchar'; btnEl.classList.remove('speaking'); btnEl.onclick = () => cpSpeak(text, btnEl); };
+    }
+    utt.onend = () => { if (btnEl) { btnEl.innerHTML = '🔊 Escuchar'; btnEl.classList.remove('speaking'); btnEl.onclick = () => cpSpeak(text, btnEl); } resolve(); };
+    utt.onerror = () => resolve();
+    window.speechSynthesis.speak(utt);
+  });
+}
+
+window.speechSynthesis && (window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices());
+
+function cpToggleMic() {
+  if (cpRecording) { cpRecognition && cpRecognition.stop(); return; }
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { cpSetStatus('Micrófono no soportado — usa Chrome'); return; }
+  window.speechSynthesis && window.speechSynthesis.cancel();
+  cpRecognition = new SR();
+  cpRecognition.lang = 'es-CO';
+  cpRecognition.continuous = false;
+  cpRecognition.interimResults = true;
+  cpRecognition.onstart = () => {
+    cpRecording = true;
+    document.getElementById('cp-mic').className = 'cp-btn recording';
+    document.getElementById('cp-mic').textContent = '⏹';
+    cpSetStatus('Escuchando...', 'active');
+  };
+  cpRecognition.onresult = (e) => {
+    let final = '', interim = '';
+    for (let r of e.results) { if (r.isFinal) final += r[0].transcript; else interim += r[0].transcript; }
+    document.getElementById('cp-input').value = final || interim;
+  };
+  cpRecognition.onend = () => {
+    cpRecording = false;
+    document.getElementById('cp-mic').className = 'cp-btn'; document.getElementById('cp-mic').textContent = '🎙️';
+    const t = document.getElementById('cp-input').value.trim();
+    if (t) { cpSetStatus('Enviando...', 'active'); setTimeout(() => cpSend(), 300); }
+    else cpSetStatus('No se detectó voz. Intenta de nuevo.');
+  };
+  cpRecognition.onerror = () => {
+    cpRecording = false;
+    document.getElementById('cp-mic').className = 'cp-btn'; document.getElementById('cp-mic').textContent = '🎙️';
+    cpSetStatus('Permite acceso al micrófono');
+  };
+  cpRecognition.start();
+}
+
+// Auto-resize textarea
+const cpInput = document.getElementById('cp-input');
+cpInput.addEventListener('input', function() { this.style.height = 'auto'; this.style.height = Math.min(this.scrollHeight, 90) + 'px'; });
+cpInput.addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); cpSend(); } });
+</script>
+
+</body>
+</html>
